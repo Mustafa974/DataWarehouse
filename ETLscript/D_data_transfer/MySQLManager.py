@@ -59,6 +59,7 @@ class MysqlManager(object):
         执行参数中的查询语句
         通过游标获取全部查询结果并返回list
         :param sql: 查询sql语句
+        :param paras: 查询语句的参数
         :return: 查询结果list（每一条结果都是dict类型）
         """
         self.cursor.execute(sql, paras)
