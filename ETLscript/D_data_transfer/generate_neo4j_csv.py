@@ -28,8 +28,6 @@ def generate_neo4j_csv():
     get_all_rel_csv()
 
 
-
-
 def build_s_time():
     """
     创建和时间有关的表

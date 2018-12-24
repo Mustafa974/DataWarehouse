@@ -1,6 +1,7 @@
 import pymongo
 import mysql.connector as mc
 from config import *
+from py2neo import *
 
 
 def get_mongodb(mongo_user, mongo_db):
@@ -8,7 +9,12 @@ def get_mongodb(mongo_user, mongo_db):
 
 
 def get_mysql_conn(user, password, database):
+    mc.connect()
     return mc.connect(user=user, password=password, database=database)
+
+
+def get_neo4j_graph(pwd: str, url="http://localhost:7474"):
+    return Graph(url, password=pwd)
 
 
 def split_by_num(mongo_user: str, mongo_db: str, from_col: str, num: int):
