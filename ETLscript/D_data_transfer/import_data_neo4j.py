@@ -1,7 +1,5 @@
 from py2neo.data import Relationship
 import util
-from B_spider.Ticker import Ticker
-
 
 """
     neo4j import data 命令:
@@ -21,11 +19,6 @@ LABEL_DIRECTOR = 'director'
 REL_WORK_WITH = 'work_with'
 REL_COOPERATE_WITH = 'cooperate_with'
 
-# 从mysql获得数据
-# 从name找到node节点
-# 看是否存在关系
-# 若存在……若不存在……
-
 
 def main():
     amazon = Mysql(USER, PASSWORD, DATABASE)
@@ -38,6 +31,7 @@ def main():
         dire = neo4j.find_node_by_name(LABEL_DIRECTOR, result[1])
         neo4j.insert_one_movie(dire, act, REL_WORK_WITH, result[2], result[3])
 
+    # 演员与演员cooperate_with关系
     for result in amazon.get_results('select actor_name1,actor_name2,movie_id,movie_name from cooperate_with'):
         print('result:', result)
         act1 = neo4j.find_node_by_name(LABEL_ACTOR, result[0])

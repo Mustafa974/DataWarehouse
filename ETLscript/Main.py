@@ -30,5 +30,3 @@ def main():
 
     # 将数据导入Neo4j数据库
 
-
-import_data_neo4j.main()
