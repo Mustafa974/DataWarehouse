@@ -1,4 +1,3 @@
-from D_data_transfer.MongoManager import *
 from D_data_transfer.MySQLManager import *
 import random
 import datetime
@@ -286,10 +285,36 @@ def load_work_with():
                     write_to_txt('/Users/mustafa/Desktop/work.txt', row)
 
 
+def loadCoopRank():
+    mysql = MysqlManager()
+    sql = 'select actor_name1, actor_name2, count(1) c from cooperate_with group by actor_name1, actor_name2 order by c desc;'
+    results = mysql.execute_query(sql)
+    count = 1
+    for result in results:
+        row = result['actor_name1'] + '，' + result['actor_name2'] + '，' + str(result['c'])
+        print('add row', count, row)
+        count += 1
+        write_to_txt('/Users/mustafa/Desktop/coopRank.txt', row)
+    mysql.close_connection()
+
+
+def loadWorkRank():
+    mysql = MysqlManager()
+    sql = 'select actor_name, director_name, count(1) c from work_with group by actor_name, director_name order by c desc;'
+    results = mysql.execute_query(sql)
+    count = 1
+    for result in results:
+        row = result['actor_name'] + '，' + result['director_name'] + '，' + str(result['c'])
+        print('add row', count, row)
+        count += 1
+        write_to_txt('/Users/mustafa/Desktop/workRank.txt', row)
+    mysql.close_connection()
+
+
 def main():
     start = datetime.datetime.now()
 
-    load_work_with()
+    loadWorkRank()
 
     end = datetime.datetime.now()
     print("调度总时长：", end - start)

@@ -15,3 +15,7 @@ loadDataToCoop = 'load data infile "/Users/mustafa/Desktop/coop.txt"  into table
                  'character set utf8 fields terminated by \'，\' (actor_name1, actor_name2, movie_id, movie_name);'
 loadDataToWork = 'load data infile "/Users/mustafa/Desktop/work.txt"  into table AmazonMovie.work_with ' \
                  'character set utf8 fields terminated by \'，\' (actor_name, director_name, movie_id, movie_name);'
+loadCoopTime = 'load data infile "/Users/mustafa/Desktop/coopRank.txt"  into table AmazonMovie.coop_rank ' \
+               'character set utf8 fields terminated by \'，\' (actor_name1, actor_name2, coop_times);'
+loadWorkTime = 'load data infile "/Users/mustafa/Desktop/workRank.txt"  into table AmazonMovie.work_rank ' \
+               'character set utf8 fields terminated by \'，\' (actor_name, director_name, work_times);'

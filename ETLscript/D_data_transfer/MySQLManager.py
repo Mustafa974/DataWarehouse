@@ -43,6 +43,21 @@ class MysqlManager(object):
             self.connection.rollback()
             print('无法执行sql语句', sql)
 
+    def execute_sql_with_params(self, sql, params):
+        """
+        执行参数中的sql语句并提交
+        若出现异常则回滚
+        :param sql:
+        :return:
+        """
+        try:
+            self.cursor.execute(sql, params)
+            self.connection.commit()
+            print('成功执行sql语句', sql, params)
+        except:
+            self.connection.rollback()
+            print('无法执行sql语句', sql, params)
+
     def execute_query(self, sql):
         """
         执行参数中的查询语句

@@ -4,22 +4,24 @@ from D_data_transfer.MySQLManager import *
 def query_director_count_by_name():
     mysql = MysqlManager()
     sql = 'select name, count(1) from director where name=\'Jim Edward\';'
-    results = mysql.execute_query(sql)
-    for result in results:
-        print(result)
+    for i in range(0, 10000):
+        results = mysql.execute_query(sql)
+        # for result in results:
+        #     print(result)
     mysql.close_connection()
 
 
 def query_director_count():
     mysql = MysqlManager()
     sql = 'select name, count(1) c from director group by name order by c desc;'
-    results = mysql.execute_query(sql)
+    for i in range(0, 100):
+        results = mysql.execute_query(sql)
     # count = 0
-    for result in results:
-        # if count > 100:
-        #     break
-        print(result)
-        # count += 1
+    # for result in results:
+    #     # if count > 100:
+    #     #     break
+    #     print(result)
+    #     # count += 1
     mysql.close_connection()
 
 
