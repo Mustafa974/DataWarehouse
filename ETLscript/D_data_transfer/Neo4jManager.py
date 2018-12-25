@@ -1,5 +1,6 @@
 import util
 from py2neo.data import Relationship
+from py2neo import *
 
 # neo4j
 MOVIE_ID = 'movie_id'
@@ -10,7 +11,7 @@ REL_WORK_WITH = 'work_with'
 REL_COOPERATE_WITH = 'cooperate_with'
 
 
-class Neo4j:
+class Neo4jManager:
     def __init__(self, pwd: str, url="http://localhost:7474"):
         self.pwd = pwd
         self.url = url

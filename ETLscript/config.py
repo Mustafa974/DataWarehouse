@@ -84,5 +84,3 @@ MYSQL_DB = 'AmazonMovie'
 
 
 
-
-

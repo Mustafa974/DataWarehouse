@@ -1,5 +1,5 @@
 import util
-from D_data_transfer.Neo4j import Neo4j
+from D_data_transfer.Neo4jManager import Neo4jManager
 
 """
     neo4j import data 命令:
@@ -11,6 +11,7 @@ USER = 'amazon'
 PASSWORD = 'amazon'
 DATABASE = 'AmazonMovie'
 S_DATABASE = 's_amazon'
+
 # neo4j
 MOVIE_ID = 'movie_id'
 MOVIE_NAME = 'movie_name'
@@ -22,7 +23,7 @@ REL_COOPERATE_WITH = 'cooperate_with'
 
 def main():
     amazon = Mysql(USER, PASSWORD, DATABASE)
-    neo4j = Neo4j(PASSWORD)
+    neo4j = Neo4jManager(PASSWORD)
 
     # 导演与演员work_with关系
     # for result in amazon.get_results('select actor_name,director_name,movie_id,movie_name from work_with'):

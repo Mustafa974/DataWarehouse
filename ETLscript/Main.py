@@ -1,11 +1,8 @@
-import time
-
 from config import *
 from A_process_txt.A_main import A_main
 from B_spider.B_main import B_main
 from C_integration.C_main import C_main
-from D_data_transfer import import_data_neo4j
-
+from E_query_analyze.Neo4j import *
 import util
 
 
@@ -30,5 +27,4 @@ def main():
     # 将数据导入MySQL数据库
 
     # 将数据导入Neo4j数据库
-
 
