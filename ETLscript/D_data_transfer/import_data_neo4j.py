@@ -2,6 +2,7 @@ import util
 from D_data_transfer.Neo4jManager import Neo4jManager
 
 """
+    首先将csv文件的数据导入neo4j
     neo4j import data 命令:
     bin/neo4j-admin import --nodes import/node/actor.csv --nodes import/node/day_of_week.csv --nodes import/node/day.csv --nodes import/node/director.csv --nodes import/node/genre.csv --nodes import/node/month.csv --nodes import/node/studio.csv --nodes import/node/year.csv --nodes import/node/movie.csv --relationships import/rel/movie_actor.csv --relationships import/rel/movie_day_of_week.csv --relationships import/rel/movie_day.csv --relationships import/rel/movie_director.csv --relationships import/rel/movie_genre.csv --relationships import/rel/movie_month.csv --relationships import/rel/movie_studio.csv --relationships import/rel/movie_year.csv
 """
@@ -21,16 +22,16 @@ REL_WORK_WITH = 'work_with'
 REL_COOPERATE_WITH = 'cooperate_with'
 
 
-def main():
+def neo4j_import_main():
     amazon = Mysql(USER, PASSWORD, DATABASE)
     neo4j = Neo4jManager(PASSWORD)
 
     # 导演与演员work_with关系
-    # for result in amazon.get_results('select actor_name,director_name,movie_id,movie_name from work_with'):
-    #     print('result:', result)
-    #     act = neo4j.find_node_by_name(LABEL_ACTOR, result[0])
-    #     dire = neo4j.find_node_by_name(LABEL_DIRECTOR, result[1])
-    #     neo4j.insert_one_movie(dire, act, REL_WORK_WITH, result[2], result[3])
+    for result in amazon.get_results('select actor_name,director_name,movie_id,movie_name from work_with'):
+        print('result:', result)
+        act = neo4j.find_node_by_name(LABEL_ACTOR, result[0])
+        dire = neo4j.find_node_by_name(LABEL_DIRECTOR, result[1])
+        neo4j.insert_one_movie(dire, act, REL_WORK_WITH, result[2], result[3])
 
     # 演员与演员cooperate_with关系
     for result in amazon.get_results('select actor_name1,actor_name2,movie_id,movie_name from cooperate_with'):
@@ -64,4 +65,5 @@ class Mysql:
         results = self.cursor.fetchall()
         for each in results:
             yield each
+
 

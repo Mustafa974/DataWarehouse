@@ -1,3 +1,5 @@
+import pymongo
+
 from config import *
 
 
@@ -6,7 +8,7 @@ def get_source_from_file(path):
     从txt文件中获取ID，生成爬虫所需的url，存入目标集合source
     :return:
     """
-    source_col = WTX_DB[COL_SOURCE_str]
+    source_col = WTX_DB_str[COL_SOURCE_str]
     count_keyword = 0
     cur_id = ''
 

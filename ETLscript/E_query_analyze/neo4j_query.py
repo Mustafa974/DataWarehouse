@@ -50,7 +50,7 @@ complex7 = "MATCH (g:genre{name:'Action'})-[:movie_genre]-(m:movie)-[:movie_year
 
 
 def neo4j_query_main():
-    query(complex3_2)
+    query(complex3_2, 1)
 
 
 def query(cql, loop=1):
@@ -61,7 +61,7 @@ def query(cql, loop=1):
         cursor = tx.run(cql)
         for rec in cursor:
         #     print(E_query_analyze, rec)
-        #     E_query_analyze += 1
+        #     i += 1
             pass
     time_2 = datetime.datetime.now()
     print(time_2 - time_1)

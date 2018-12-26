@@ -1,6 +1,7 @@
 import csv
 import mysql.connector as mc
 import util
+from D_data_transfer.import_data_neo4j import Mysql
 
 # mysql
 USER = 'amazon'
@@ -165,7 +166,7 @@ def get_all_node_csv():
     """
     # 电影
     get_node_csv(
-        conn=util.get_mysql_conn(USER, PASSWORD, DATABASE),
+        conn=util.get_mysql_conn(USER, PASSWORD, S_DATABASE),
         csv_path='movie.csv',
         row_list=['id:ID', 'name', 'review:int', 'star:float', 'version_count:int', 'duration', ':LABEL'],
         label='movie',
@@ -417,3 +418,15 @@ def get_rel_csv(conn, csv_path: str, row_list: list, type_: str, query_sql: str,
             # 写入数据
             print(csv_path, '>>>>>', row)
             writer.writerow(row)
+
+
+def add_time():
+    amazon = Mysql(USER, PASSWORD, DATABASE)
+    s_amazon = Mysql(USER, PASSWORD, S_DATABASE)
+    for movie in amazon.get_results('select movie_id,year,month,day,day_of_week from time'):
+        print(movie)
+        s_amazon.cursor.execute('update movie set year= '+str(movie[1])+' where id = '+str(movie[0]))
+        s_amazon.cursor.execute('update movie set month= '+str(movie[2])+' where id = '+str(movie[0]))
+        s_amazon.cursor.execute('update movie set day= '+str(movie[3])+' where id = '+str(movie[0]))
+        s_amazon.cursor.execute('update movie set day_of_week= '+str(movie[4])+' where id = '+str(movie[0]))
+        s_amazon.conn.commit()

@@ -1,3 +1,5 @@
+import pymongo
+
 from config import *
 
 
@@ -10,7 +12,7 @@ def import_data_from_txt(path):
     """
 
     f = open(path, 'r', encoding='ISO-8859-1')
-    src_col = WTX_DB[COL_TXT_str]
+    src_col = WTX_DB_str[COL_TXT_str]
 
     try:
         # 生成迭代器，初始化
