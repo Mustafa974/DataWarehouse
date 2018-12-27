@@ -441,8 +441,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.LoadNeo4jEdge" />
       <item itemvalue="Python.LoadDataToTXT" />
+      <item itemvalue="Python.LoadNeo4jEdge" />
       <item itemvalue="Python.Main" />
       <item itemvalue="Python.MySQLManager" />
     </list>
