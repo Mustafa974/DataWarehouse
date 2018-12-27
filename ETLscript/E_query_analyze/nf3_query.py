@@ -34,10 +34,14 @@ studio1 = "select s_studio.name, count(1) from s_movie_studio,s_studio " \
 studio2 = "select s_studio.name, count(1) from s_movie_studio,s_studio " \
           "where s_studio.id=studio_id group by s_studio.name order by count(1) desc;"
 
+complex1 = "with coop as (select a.actor_id a_id,b.actor_id b_id,count(1) c from s_movie_actor a,s_movie_actor b" \
+           " where a.movie_id=b.movie_id and a.actor_id<>b.actor_id group by a.actor_id,b.actor_id order by c desc " \
+           ") select a.name,b.name,c from s_actor a,s_actor b,coop where a.id=coop.a_id and b.id=coop.b_id;"
+
 
 def nf3_query_main():
-    loop = 100
-    query(studio2, loop)
+    loop = 10
+    query(complex1, loop)
 
 
 def query(sql, loop=1):
