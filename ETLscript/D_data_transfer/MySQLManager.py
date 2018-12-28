@@ -8,12 +8,12 @@ from D_data_transfer.MongoManager import *
 
 class MysqlManager(object):
 
-    def __init__(self):
+    def __init__(self, user, pwd, db):
         """
         对象初始化，针对同一个对象只创建一次mysql连接以及游标
         """
-        self.connection = pymysql.connect(host=MYSQL_HOST, port=MYSQL_PORT, user=MYSQL_USR, password=MYSQL_PWD,
-                                          db=MYSQL_DB, charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+        self.connection = pymysql.connect(host=MYSQL_HOST, port=MYSQL_PORT, user=user, password=pwd,
+                                          db=db, charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
         self.cursor = self.connection.cursor()
 
     def insert(self):
