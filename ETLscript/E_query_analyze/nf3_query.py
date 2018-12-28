@@ -1,6 +1,6 @@
 import datetime
 
-from D_data_transfer.import_data_neo4j import Mysql
+from D_data_transfer.MySQLManager import *
 
 # mysql
 USER = 'amazon'
@@ -45,16 +45,14 @@ def nf3_query_main():
 
 
 def query(sql, loop=1):
-    mysql = Mysql(USER, PASSWORD, DATABASE)
+    mysql = MysqlManager(USER, PASSWORD, DATABASE)
     time_1 = datetime.datetime.now()
 
     for i in range(loop):
-        mysql.cursor.execute(sql)
-        results = mysql.cursor.fetchall()
+        results = mysql.execute_query(sql)
         for record in results:
             # print(record)
             pass
-
     time_2 = datetime.datetime.now()
     print(time_2-time_1)
 
