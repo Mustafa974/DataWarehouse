@@ -51,7 +51,6 @@ coop01 = 'select actor_name1, actor_name2, count(1) c from cooperate_with group 
 work01 = 'select actor_name, director_name, count(1) c from work_with group by actor_name, director_name order by c desc limit 100;'
 cq01 = 'with movies as (select movie_name from work_with where actor_name=\'Mel Blanc\' and director_name=\'Friz Freleng\') select movie.name, movie.star, movie.review from movie, movies where movie.name=movies.movie_name order by movie.star desc, movie.review desc;'
 cq02 = 'with movies as (select movie_name from cooperate_with where actor_name1=\'Moe Howard\' and actor_name2=\'Curly Howard\') select movie_name, star, review from movies, movie where movies.movie_name=movie.name order by star desc, review desc;'
-# cq03 = 'with movies as (select movie_name from director where name=\'Cerebellum Corporation\') select avg(star) avg_star, avg(review) avg_review from movie, movies where movies.movie_name=movie.name order by avg_star desc, avg_review desc limit 100;'
 cq03 = 'select director.name, avg(star) avg_star, avg(review) avg_review from movie, director where movie.name=director.movie_name group by director.name order by avg_star desc, avg_review desc limit 100;'
 cq04 = 'select movie.name, movie.rated, movie.star, movie.review, movie.version_count, movie.duration from movie, actor where actor.name=\'Morgan Freeman\' and actor.movie_name=movie.name order by star desc;'
 cq05 = 'select month, avg(review) avg_review from movie, time where movie.name=time.movie_name group by month order by avg_review desc;'
