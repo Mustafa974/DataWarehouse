@@ -10,8 +10,8 @@ DATABASE = 'AmazonMovie'
 S_DATABASE = 's_amazon'
 
 # 把mysql表变成小表
-# 导出节点node
-# 导出关系rel
+# 导出节点node的csv
+# 导出关系rel的csv
 
 #
 # def test():

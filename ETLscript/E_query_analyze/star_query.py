@@ -61,6 +61,7 @@ complex01 = "with movies as (select movie.id movie_id, movie.name movie_name, mo
 complex02 = "with movies as (select movie.id movie_id, movie.name movie_name, movie.star star from movie, actor where actor.name='Jackie Chan' and actor.movie_id=movie.id) select genre.name genre, avg(movies.star) avg_star from movies, genre where movies.movie_id=genre.movie_id group by genre.name order by avg_star desc;"
 complex03 = "with movies as (select studio.movie_id from studio, genre where studio.name='20th Century Fox' and genre.name='Action' and studio.movie_id=genre.movie_id) select movie.name, movie.rated, movie.star, movie.review, movie.version_count, movie.duration from movie, movies where movie.id=movies.movie_id order by movie.star desc;"
 
+
 def query(sql, loop):
     mysql = MysqlManager(MYSQL_USR, MYSQL_PWD, MYSQL_DB)
     time_1 = datetime.datetime.now()
